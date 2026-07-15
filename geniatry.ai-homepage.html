@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GENIATRY.ai | Precision Psychiatric Genomics</title>
+    <style>
+        :root {
+            --bg-dark: #050814;
+            --bg-card: #0c1226;
+            --bg-card-hover: #121b36;
+            --cyan-primary: #00E5FF;
+            --cyan-glow: rgba(0, 229, 255, 0.25);
+            --gold-accent: #E9C46A;
+            --gold-glow: rgba(233, 196, 106, 0.15);
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+            --border-glow: #1E293B;
+            --red-alert: #FF5A5F;
+            --green-pass: #10B981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+            position: sticky;
+            top: 0;
+            background-color: rgba(5, 8, 20, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #FFFFFF;
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--cyan-primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--cyan-primary);
+        }
+
+        .cta-nav-btn {
+            background: linear-gradient(135deg, #00B4D8 0%, #00E5FF 100%);
+            color: #050814;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px var(--cyan-glow);
+            transition: all 0.3s ease;
+        }
+
+        .cta-nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0 100px 0;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .badge-proposal {
+            background: var(--gold-glow);
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero-section h1 {
+            font-size: 52px;
+            line-height: 1.15;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 24px;
+        }
+
+        .hero-section h1 span {
+            color: var(--cyan-primary);
+            background: linear-gradient(to right, #00E5FF, #00B4D8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 580px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00B4D8 0%, #00E5FF 100%);
+            color: #050814;
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 24px var(--cyan-glow);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-glow);
+            color: #FFFFFF;
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--text-muted);
+        }
+
+        /* Graphic Map Context */
+        .hero-graphic-box {
+            background: linear-gradient(135deg, #0c1226 0%, #060a17 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .graphic-title {
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            font-size: 11px;
+            font-family: monospace;
+            color: var(--cyan-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Section Global Typography */
+        section {
+            padding: 100px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px auto;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            border-color: rgba(0, 229, 255, 0.2);
+        }
+
+        /* Value & Diagnostics Displays */
+        .metric-large {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .metric-large.cyan { color: var(--cyan-primary); }
+        .metric-large.red { color: var(--red-alert); }
+        .metric-large.gold { color: var(--gold-accent); }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+        }
+
+        .card-body {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Multi-column Splitted Crisis Layout */
+        .crisis-split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: rgba(12, 18, 38, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .crisis-column-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .crisis-stat-item {
+            border-left: 3px solid var(--border-glow);
+            padding-left: 20px;
+            margin-bottom: 24px;
+        }
+
+        .crisis-stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .crisis-stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .crisis-stat-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Table Architecture Layout */
+        .table-wrapper {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 18px 24px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        th {
+            background-color: rgba(7, 11, 25, 0.5);
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .check-green { color: var(--green-pass); font-weight: bold; }
+        .cross-red { color: var(--red-alert); font-weight: bold; }
+
+        /* Dashboard Interface Simulation */
+        .interface-simulation {
+            background: #060914;
+            border: 2px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        .sim-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .sim-badge-alert {
+            background: rgba(255, 90, 95, 0.1);
+            border: 1px solid var(--red-alert);
+            color: var(--red-alert);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sim-curve-area {
+            height: 140px;
+            position: relative;
+            margin: 24px 0;
+            border-bottom: 2px solid var(--border-glow);
+        }
+
+        .sim-curve-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Steps workflow layout */
+        .workflow-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .workflow-node {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .node-index {
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid var(--cyan-primary);
+            color: var(--cyan-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        /* Roadmap Section Layout */
+        .timeline-vertical {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            border-left: 2px solid var(--border-glow);
+            padding-left: 40px;
+        }
+
+        .timeline-block {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-pointer {
+            position: absolute;
+            left: -51px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 4px solid var(--cyan-primary);
+        }
+
+        .timeline-pointer.gold { border-color: var(--gold-accent); }
+        .timeline-pointer.green { border-color: var(--green-pass); }
+
+        .timeline-stamp {
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+        .timeline-stamp.cyan { color: var(--cyan-primary); }
+        .timeline-stamp.gold { color: var(--gold-accent); }
+        .timeline-stamp.green { color: var(--green-pass); }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .timeline-text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Founders Section Layout */
+        .founder-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .founder-profile {
+            background: linear-gradient(135deg, #0c1226 0%, #080d1c 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .founder-graphic {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .founder-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+
+        .founder-role {
+            font-size: 12px;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .founder-role.cyan { color: var(--cyan-primary); }
+        .founder-role.gold { color: var(--gold-accent); }
+
+        .founder-bio {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .founder-meta {
+            font-size: 13px;
+            font-family: monospace;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* Footer Element */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 48px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-legal-tag {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- NAVBAR MODULE -->
+    <header>
+        <div class="logo-block">
+            <!-- Vector Double Helix Symbol Representation -->
+
+            <svg width="100%" viewBox="0 0 920 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <!-- Premium Teal Gradient -->
+                    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#51c4d3" />
+                      <stop offset="100%" stop-color="#21717a" />
+                    </linearGradient>
+
+                    <!-- Sophisticated Gold Gradient -->
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#e5d0a6" />
+                      <stop offset="100%" stop-color="#ab8e5b" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- ==================== DNA HELIX ICON ==================== -->
+                  <g id="logo-icon">
+                    <!-- Horizontal Rungs (Top Half) -->
+                    <rect x="30" y="45" width="44" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+                    <rect x="39" y="59" width="35" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+                    <rect x="49" y="73" width="25" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+                    <rect x="61" y="87" width="13" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+
+                    <rect x="86" y="45" width="44" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+                    <rect x="86" y="59" width="35" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+                    <rect x="86" y="73" width="25" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+                    <rect x="86" y="87" width="13" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+
+                    <!-- Horizontal Rungs (Bottom Half) -->
+                    <rect x="61" y="107" width="13" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+                    <rect x="49" y="121" width="25" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+                    <rect x="39" y="135" width="35" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+                    <rect x="30" y="149" width="44" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+
+                    <rect x="86" y="107" width="13" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+                    <rect x="86" y="121" width="25" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+                    <rect x="86" y="135" width="35" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+                    <rect x="86" y="149" width="44" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+
+                    <!-- Main Outer Strands -->
+                    <path d="M 26,20 C 23,60 62,90 80,100 C 98,110 137,140 134,180" stroke="url(#tealGrad)" stroke-width="13" stroke-linecap="round" fill="none" />
+                    <path d="M 134,20 C 137,60 98,90 80,100 C 62,110 23,140 26,180" stroke="url(#goldGrad)" stroke-width="13" stroke-linecap="round" fill="none" />
+                  </g>
+
+                  <!-- ==================== TYPOGRAPHY (OPTIMIZED A-T SPACING) ==================== -->
+                  <g id="logo-text" fill="#FFFFFF">
+                    <!-- G -->
+                    <path d="M 225,55 C 195,55 180,75 180,100 C 180,125 195,145 225,145 C 250,145 260,130 260,105 L 222,105 L 222,120 L 244,120 C 243,127 238,131 225,131 C 203,131 196,118 196,100 C 196,82 203,69 225,69 C 240,69 247,77 251,85 L 263,75 C 256,62 243,55 225,55 Z" />
+                    
+                    <!-- E -->
+                    <path d="M 287,58 L 347,58 L 347,72 L 303,72 L 303,93 L 340,93 L 340,107 L 303,107 L 303,131 L 348,131 L 348,145 L 287,145 Z" />
+                    
+                    <!-- N -->
+                    <path d="M 374,58 L 390,58 L 436,126 L 436,58 L 451,58 L 451,145 L 435,145 L 389,77 L 389,145 L 374,145 Z" />
+                    
+                    <!-- I -->
+                    <path d="M 477,58 L 492,58 L 492,145 L 477,145 Z" />
+                    
+                    <!-- A -->
+                    <path d="M 547,58 L 592,145 L 576,145 L 565,121 L 529,121 L 518,145 L 502,145 Z M 547,76 L 559,106 L 535,106 Z" fill-rule="evenodd" />
+                    
+                    <!-- T (Relocated horizontally to x=588 for ideal breathing room) -->
+                    <path d="M 588,58 L 652,58 L 652,72 L 628,72 L 628,145 L 612,145 L 612,72 L 588,72 Z" />
+                    
+                    <!-- R (Shifted proportionally to preserve trailing balance) -->
+                    <path d="M 672,58 L 717,58 C 733,58 743,67 743,82 C 743,96 732,104 716,105 L 745,145 L 727,145 L 700,106 L 687,106 L 687,145 L 672,145 Z M 687,72 L 713,72 C 723,72 727,76 727,82 C 727,88 723,92 713,92 L 687,92 Z" fill-rule="evenodd" />
+                    
+                    <!-- Y (Shifted proportionally to preserve trailing balance) -->
+                    <path d="M 757,58 L 781,58 L 801,96 L 821,58 L 845,58 L 809,104 L 809,145 L 793,145 L 793,104 Z" />
+                  </g>
+            </svg>
+
+        </div>
+        <nav>
+            <a href="#divide">The Divide</a>
+            <a href="#architecture">Core Intelligence</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#matrix">Market Metrics</a>
+            <a href="#roadmap">Strategic Roadmap</a>
+            <a href="#founders">Founders</a>
+            <a href="#portal" class="cta-nav-btn">Access Engine Portal</a>
+        </nav>
+    </header>
+
+    <!-- HERO COMPONENT -->
+    <section class="hero-section">
+        <div>
+            <div class="badge-proposal">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                Launching August 2026
+            </div>
+            <h1>India’s First <span>Foundational Model Engine</span> for Computational Psychiatric Care</h1>
+            <p>Translating multi-population raw genomic arrays into highly precise, clinically actionable pharmacogenomic adjustments and localized polygenic risk profiles structured for the Indian subcontinent genome landscape.</p>
+            <div class="hero-buttons">
+                <a href="#architecture" class="btn-primary">Explore Platform Architecture</a>
+                <a href="#workflow" class="btn-secondary">View Delivery Workflow</a>
+            </div>
+        </div>
+        
+        <!-- Vector Infographic Concept Box -->
+        <div class="hero-graphic-box">
+            <div class="graphic-title">Cross-Ancestry Model Engine Calibration</div>
+            
+            <svg width="100%" height="240" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: 20px;">
+                <!-- Left Block: Global Repositories -->
+                <rect x="10" y="50" width="100" height="120" rx="8" fill="#1E293B" stroke="rgba(255,255,255,0.05)"/>
+                <text x="60" y="85" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">Global GWAS</text>
+                <text x="60" y="110" fill="#FF5A5F" font-size="20" font-weight="800" text-anchor="middle">&gt;80%</text>
+                <text x="60" y="130" fill="#94A3B8" font-size="10" text-anchor="middle">Euro-Centric Data</text>
+                
+                <!-- Center Process: Transfer Learning Model Pipeline -->
+                <path d="M 120 110 L 260 110" stroke="#00E5FF" stroke-width="2" stroke-dasharray="5 5"/>
+                <polygon points="265,110 255,105 255,115" fill="#00E5FF"/>
+                
+                <circle cx="190" cy="110" r="28" fill="#0C1226" stroke="#00E5FF" stroke-width="2"/>
+                <text x="190" y="108" fill="#00E5FF" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">GENIATRY</text>
+                <text x="190" y="120" fill="#E9C46A" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">TL-PRS OS</text>
+                
+                <!-- Right Block: Indian Target Mapping Frame -->
+                <rect x="270" y="50" width="120" height="120" rx="8" fill="#0F172A" stroke="#E9C46A" stroke-width="1.5"/>
+                <text x="330" y="85" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">Indian Cohorts</text>
+                <text x="330" y="110" fill="#10B981" font-size="18" font-weight="800" text-anchor="middle">44.03M</text>
+                <text x="330" y="130" fill="#94A3B8" font-size="9" text-anchor="middle">Unique Variants Isolated</text>
+                
+                <!-- Bottom Advantage Tag -->
+                <rect x="90" y="195" width="220" height="30" rx="6" fill="rgba(16,185,129,0.1)" stroke="#10B981" stroke-width="1"/>
+                <text x="200" y="214" fill="#10B981" font-size="11" font-weight="700" text-anchor="middle">Immediate 25% to 30% Predictive Gain</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- THE SCIENTIFIC & CLINICAL DIVIDE SECTION -->
+    <section id="divide">
+        <div class="section-header">
+            <h2>The Genomic Vacuum & Clinical Guesswork Crisis</h2>
+            <p>Modern precision health models are limited by an extreme Eurocentric ancestry dataset bias, forcing domestic neuro-psychiatric practices to rely heavily on standard clinical trial-and-error treatment methods.</p>
+        </div>
+        
+        <div class="grid-3">
+            <div class="card">
+                <div class="metric-large red">&gt;80%</div>
+                <div class="card-title">Western Dataset Imbalance</div>
+                <div class="card-body">Over 80% of major global genome-wide association datasets sample European ancestral backgrounds exclusively, leaving less than 5% representation for the distinct genomic complexities of the Indian Subcontinent.</div>
+            </div>
+            <div class="card">
+                <div class="metric-large red">2x to 5x</div>
+                <div class="card-title">PRS Efficacy Degradation</div>
+                <div class="card-body">Standard international Polygenic Risk Score structures experience severe degradation in predictive accuracy—dropping by a factor of 2x to 5x—when deployed directly onto complex South Asian variant arrangements.</div>
+            </div>
+            <div class="card">
+                <div class="metric-large cyan">44.03M</div>
+                <div class="card-title">Sovereign Variant Space</div>
+                <div class="card-body">National data mapping benchmarks verify that out of 129.93 Million genetic variants tracked within domestic lines, 44.03 Million sequence variations remain entirely unique and unaccounted for in traditional Western catalogs.</div>
+            </div>
+        </div>
+
+        <!-- The Crisis Split Details Section -->
+        <div class="crisis-split-container">
+            <div>
+                <div class="crisis-column-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF5A5F" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    The Trial-and-Error Treatment Split
+                </div>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Psychiatry regularly operates without baseline molecular biomarkers, meaning clinical diagnostics remain dependent on standard symptom checklist observations. The landmark prospective clinical study indicates a harsh distribution limit:</p>
+                
+                <div class="crisis-stat-item" style="border-color: var(--green-pass);">
+                    <div class="crisis-stat-value">33% Full Remission Baseline</div>
+                    <div class="crisis-stat-desc">Only one-third of individuals achieve symptom-free stabilization on an initial antidepressant line, requiring an average threshold of 7 weeks to assess accurate compound efficacy.</div>
+                </div>
+                <div class="crisis-stat-item" style="border-color: var(--gold-accent);">
+                    <div class="crisis-stat-value">33% Vulnerable Partial Response</div>
+                    <div class="crisis-stat-desc">Another third demonstrate sub-optimal clinical modifications, leaving them structurally susceptible to quick symptom relapses and prolonged functional disruptions.</div>
+                </div>
+                <div class="crisis-stat-item" style="border-color: var(--red-alert);">
+                    <div class="crisis-stat-value">34% Complete Non-Response</div>
+                    <div class="crisis-stat-desc">The remaining third extract no measurable clinical asset, enduring systemic compound toxicity and trending directly toward clinical Treatment-Resistant status.</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="crisis-column-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    The Macroeconomic & Infrastructure Deficit
+                </div>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Catastrophic clinical management blockages pair with severe infrastructure resource limits inside domestic healthcare domains, compounding the systemic impact.</p>
+                
+                <div class="crisis-stat-item">
+                    <div class="crisis-stat-value">$1.03 Trillion Productivity Drain</div>
+                    <div class="crisis-stat-desc">Estimated direct macroeconomic loss to the Indian state due to untreated or improperly managed mental health disruptions driven by structural workspace absenteeism and premature attrition.</div>
+                </div>
+                <div class="crisis-stat-item">
+                    <div class="crisis-stat-value">0.75 Specialists per 100,000 Citizens</div>
+                    <div class="crisis-stat-desc">Critical local medical workforce access deficit, trailing significantly behind the targeted world benchmark allocation recommendation of 3.0 psychiatric specialists per 100k cohort.</div>
+                </div>
+                <div class="crisis-stat-item">
+                    <div class="crisis-stat-value">92% Regional Treatment Isolation Gap</div>
+                    <div class="crisis-stat-desc">A systemic supply gap that leaves over 90% of rural patients without expert clinical validation, forcing community general practitioners to prescribe mental health chemical lines without biological guidance.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE ARCHITECTURE INTERFACE DESIGN SECTION -->
+    <section id="architecture">
+        <div class="section-header">
+            <h2>The Biological Computing Platform</h2>
+            <p>Geniatry models complex molecular pathology using structural systems computing paradigms, parsing the 3-billion-letter human genome hard drive as a unified network operating layer.</p>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h3 style="font-size: 22px; color: #FFFFFF; margin-bottom: 20px;">The Molecular System Paradigm</h3>
+                <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 24px;">Traditional precision protocols track individual isolated target metrics. Geniatry maps multi-gene interaction pathways, configuring polygenic liabilities using continuous threshold arrays rather than basic single-mutation targets.</p>
+                
+                <div class="card" style="margin-bottom: 20px; padding: 24px; background: rgba(12,18,38,0.6);">
+                    <div style="font-weight: 700; font-size: 15px; color: var(--gold-accent); margin-bottom: 6px;">Monogenic (Deterministic Faults) vs. Polygenic (Psychiatric Reality)</div>
+                    <p style="font-size: 13.5px; color: var(--text-muted);">A monogenic illness mimics a single severe mechanical system break that forces immediate platform failure. In contrast, psychiatric conditions behave like thousands of microscopic structural layout inconsistencies across a dynamic environment—no lone variation prompts system collapse, but their aggregate liability breaks function under stress.</p>
+                </div>
+
+                <div style="background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); padding: 16px;">
+                    <div style="font-size: 12px; font-family: monospace; color: var(--cyan-primary); text-transform: uppercase; margin-bottom: 12px;">Linear Risk Architecture Formula</div>
+                    <div style="background: #060914; padding: 18px 24px; border-radius: 6px; border: 1px solid var(--border-glow); margin-bottom: 12px; display: flex; justify-content: center; align-items: center;">
+                        <!-- Embeddable Equation SVG Asset -->
+                        <svg width="250" height="72" viewBox="0 0 250 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; max-width: 100%; height: auto;">
+                            <style>
+                                .math-text { font-family: 'Cambria', 'Times New Roman', 'Georgia', serif; fill: #F1F5F9; }
+                                .math-bold { font-weight: bold; }
+                            </style>
+                            <!-- PRS = -->
+                            <text x="5" y="44" class="math-text math-bold" font-size="23" letter-spacing="0.5">PRS =</text>
+                            
+                            <!-- Sigma Character Component -->
+                            <text x="88" y="50" class="math-text" font-size="44" font-weight="100">&#x2211;</text>
+                            <!-- Sigma Upper Limit M -->
+                            <text x="101" y="16" class="math-text math-bold" font-size="13" text-anchor="middle">M</text>
+                            <!-- Sigma Lower Limit j = 1 -->
+                            <text x="101" y="65" class="math-text" font-size="12" text-anchor="middle">j = 1</text>
+                            
+                            <!-- Beta Element -->
+                            <text x="135" y="44" class="math-text" font-size="23">&#x3B2;</text>
+                            <!-- Beta Subscript j -->
+                            <text x="149" y="52" class="math-text" font-size="14">j</text>
+                            
+                            <!-- Middle Dot Operator -->
+                            <text x="165" y="44" class="math-text math-bold" font-size="22">&#x22C5;</text>
+                            
+                            <!-- G Element -->
+                            <text x="188" y="44" class="math-text math-bold" font-size="23">G</text>
+                            <!-- G Subscript j -->
+                            <text x="205" y="52" class="math-text" font-size="14">j</text>
+                        </svg>
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-muted); font-family: monospace; line-height: 1.4;">
+                        Where <strong>M</strong> marks the total tracked single nucleotide variations, <strong>&beta;_j</strong> configures the locally translated ancestral statistical weight adjustments, and <strong>G_j</strong> maps the raw single-patient sequence allele count values.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Simulation Block -->
+            <div class="interface-simulation">
+                <div class="sim-header">
+                    <div>
+                        <div style="font-family: monospace; font-size: 10px; color: var(--cyan-primary); letter-spacing: 1px;">GENIATRY INTERACTIVE INSIGHTS ENGINE</div>
+                        <h4 style="color: #FFFFFF; font-size: 16px; margin-top: 2px;">Neurodevelopmental / Risk Decile Stratification</h4>
+                    </div>
+                    <div class="sim-badge-alert">Elevated Risk Tier</div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;">
+                        <span style="color: var(--text-muted);">Assessed Core Target Condition:</span>
+                        <span style="color: #FFFFFF; font-weight: 600;">Bipolar Status / Schizophrenia Overlap</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span style="color: var(--text-muted);">Engine Metric Accuracy Profile:</span>
+                        <span style="color: var(--green-pass); font-weight: 600; font-family: monospace;">AUROC Optimized</span>
+                    </div>
+                </div>
+
+                <div class="sim-curve-area">
+                    <svg class="sim-curve-svg" viewBox="0 0 320 120" preserveAspectRatio="none">
+                        <path d="M 0 115 Q 80 115 160 15 Q 240 115 320 115" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+                        <path d="M 210 115 Q 240 115 320 115 L 320 120 L 210 120 Z" fill="rgba(255, 90, 95, 0.15)"/>
+                        <circle cx="260" cy="65" r="5" fill="#FF5A5F"/>
+                        <line x1="260" y1="65" x2="260" y2="120" stroke="#FF5A5F" stroke-dasharray="2 2"/>
+                    </svg>
+                    <div style="position: absolute; top: 35px; right: 10px; font-family: monospace; font-size: 11px; background: var(--red-alert); color: #FFFFFF; padding: 2px 6px; border-radius: 4px; font-weight: 700;">92nd Percentile</div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); font-family: monospace; margin-bottom: 15px;">
+                    <span>Low Base Variant Profile</span>
+                    <span>Median Population Mean</span>
+                    <span style="color: var(--red-alert);">High Risk Layer</span>
+                </div>
+
+                <div style="font-size: 13px; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px;">
+                    🧬 <strong>Engine Translation Result:</strong> Variant sets correlate directly with high-odds liability distributions, verifying a **2.3x to 3.0x higher clinical risk profile** compared to baseline sequence configurations.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSET-LIGHT OPERATION WORKFLOW -->
+    <section id="workflow">
+        <div class="section-header">
+            <h2>The Delivery Integration Architecture</h2>
+            <p>operating as a high-margin data interpretation engine. Wet-lab physical operations are delegated to standard diagnostic centers while Geniatry controls the foundational analytics system.</p>
+        </div>
+
+        <div class="workflow-timeline">
+            <div class="workflow-node">
+                <div class="node-index">01</div>
+                <h4 style="color: #FFFFFF; font-size: 16px; margin-bottom: 8px;">Easy Ingestion</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Standard home-based or clinic-centric saliva collection arrays requiring minimal technical support protocols.</p>
+            </div>
+            <div class="workflow-node">
+                <div class="node-index">02</div>
+                <h4 style="color: #FFFFFF; font-size: 16px; margin-bottom: 8px;">Lab Processing</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Partner NABL-certified genetic laboratories execute raw whole genome array reading down to 30x track depths.</p>
+            </div>
+            <div class="workflow-node">
+                <div class="node-index">03</div>
+                <h4 style="color: #FFFFFF; font-size: 16px; margin-bottom: 8px;">Geniatry AI Engine</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Proprietary multi-population models decode raw sequence tracks, calculating individual polygenic scores and drug-gene calibrations.</p>
+            </div>
+            <div class="workflow-node">
+                <div class="node-index">04</div>
+                <h4 style="color: #FFFFFF; font-size: 16px; margin-bottom: 8px;">Intuitive Dashboard</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Frontline healthcare specialists receive clean, color-coded, actionable drug compatibility indices directly inside active point-of-care dashboards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARKET OPPORTUNITY & BUSINESS MATRIX SECTION -->
+    <section id="matrix">
+        <div class="section-header">
+            <h2>Market Dynamic & Commercial Advantage Moat</h2>
+            <p>Positioned uniquely at the specialized integration overlap of high architectural psychiatric focus, customized local genotype tuning, and an asset-light cloud delivery grid.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="card" style="text-align: center;">
+                <div class="metric-large cyan">$5.3 Billion</div>
+                <div class="card-title">Total Addressable Market</div>
+                <div class="card-body">The absolute aggregate scale of domestic psychiatric healthcare diagnostics, clinical screening matrices, and general consumer health genomics sectors.</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div class="metric-large gold">$750 Million</div>
+                <div class="card-title">Serviceable Addressable Market</div>
+                <div class="card-body">The urban and semi-urban middle-to-high income psychiatric customer framework seeking data-driven mental healthcare infrastructure.</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div class="metric-large cyan">$3.75 Million</div>
+                <div class="card-title">Serviceable Obtainable Market</div>
+                <div class="card-body">Targeted near-term validation goal tracking a 0.5% market share capture via platform API plugins embedded into corporate Employee Assistance Programs.</div>
+            </div>
+        </div>
+
+        <!-- System Architecture Moat Matrix -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Strategic Performance Metrics</th>
+                        <th>Geniatry Foundational Layer</th>
+                        <th>Standard Genomics Hubs</th>
+                        <th>Broad Consumer Wellness Apps</th>
+                        <th>Horizontal Diagnostic Chains</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Subcontinent Genomic Calibration</strong></td>
+                        <td><span class="check-green">✓ Native AI Model Integration</span></td>
+                        <td><span class="cross-red">✗ Global ACMG Baselines Only</span></td>
+                        <td><span class="check-green">✓ Partial Shared Allele Pools</span></td>
+                        <td><span class="cross-red">✗ Basic Reference Mappings</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Psychiatric Path Specificity Focus</strong></td>
+                        <td><span class="check-green">✓ 100% Core Specialty Focus</span></td>
+                        <td><span class="cross-red">✗ Diluted (Oncology Panel Target)</span></td>
+                        <td><span class="cross-red">✗ Non-Specific Fitness Focus</span></td>
+                        <td><span class="cross-red">✗ Standard Panel Queries Only</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Operational Delivery Framework</strong></td>
+                        <td><span class="check-green">✓ Pure SaaS Layer / Flex API</span></td>
+                        <td><span class="cross-red">✗ Capital-Heavy Physical Machinery</span></td>
+                        <td><span class="cross-red">✗ Capital-Heavy Physical Machinery</span></td>
+                        <td><span class="cross-red">✗ Heavy Outpatient Sample Logistics</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clinical Point-of-Care Integration</strong></td>
+                        <td><span class="check-green">✓ Real-time Embedded Dashboards</span></td>
+                        <td><span class="cross-red">✗ Static Multi-page Document Files</span></td>
+                        <td><span class="cross-red">✗ Direct Consumer Coaching Portal</span></td>
+                        <td><span class="cross-red">✗ Standard Paper Parameter Logs</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Household Cost Comparison Grid -->
+        <div class="grid-2" style="margin-top: 40px;">
+            <div class="card" style="background: rgba(12, 18, 38, 0.6);">
+                <h3 style="color: #FFFFFF; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Household Out-of-Pocket Cost Metric Matrix (9-Month Baseline)
+                </h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13.5px;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Initial Diagnostic/Genomic Array Test</span>
+                        <span style="font-weight: 600; color: #FFFFFF;">Traditional: ₹0 | Geniatry Engine: ₹7,500</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Specialist Clinical Consultation Rounds</span>
+                        <span style="font-weight: 600; color: #FFFFFF;">Traditional: ₹12,000 | Geniatry Engine: ₹6,000</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Medication Trial Cycles & Side-Effect Counterparts</span>
+                        <span style="font-weight: 600; color: #FFFFFF;">Traditional: ₹18,000 | Geniatry Engine: ₹9,000</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Overhead Structural Blood Panel Audits</span>
+                        <span style="font-weight: 600; color: #FFFFFF;">Traditional: ₹8,000 | Geniatry Engine: ₹3,000</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Indirect Absenteeism Caregiver Loss Rate</span>
+                        <span style="font-weight: 600; color: #FFFFFF;">Traditional: ₹20,000 | Geniatry Engine: ₹6,000</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 15px; font-weight: 700;">
+                        <span style="color: #FFFFFF;">Aggregate Operational Out-of-Pocket Expense</span>
+                        <span style="color: var(--cyan-primary);">Traditional: ₹58,000 | Geniatry Engine: ₹31,500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROI Statistics Output Boxes -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px;">
+                <div class="card" style="padding: 24px; display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Net Family Direct Value Save</div>
+                        <div style="font-size: 26px; font-weight: 800; color: var(--green-pass);">₹26,500 (45.6% Direct Reduction)</div>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding: 24px; display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Systemic Family Investment Yield</div>
+                        <div style="font-size: 26px; font-weight: 800; color: var(--cyan-primary);">3.5x Savings Velocity ROI</div>
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 24px; display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Clinical Stabilization Timeline Reduction</div>
+                        <div style="font-size: 26px; font-weight: 800; color: var(--gold-accent);">From 24 Weeks down to &lt; 4 Weeks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRATEGIC VERTICAL DEVELOPMENT TIMELINE ROADMAP -->
+    <section id="roadmap">
+        <div class="section-header">
+            <h2>The Five-Year Strategic Roadmap</h2>
+            <p>A rigorous operational framework built to capture sovereign genomics clinical data moats and align directly with emerging national public healthcare ecosystems.</p>
+        </div>
+
+        <div class="timeline-vertical">
+            <div class="timeline-block">
+                <div class="timeline-pointer"></div>
+                <div class="timeline-stamp cyan">Phase 01 | Months 00 - 12</div>
+                <h4 class="timeline-title">Incubation MVP Setup & Transfer Learning Tuning</h4>
+                <p class="timeline-text">Establish formal platform structural alignment profiles matching the FITT - IIT Delhi program evaluation mandates. Gather baseline public genotype lines from the government-backed GenomeIndia dataset repository via the Indian Biological Data Centre (IBDC) framework, calibrating cross-ancestry transfer modeling pipelines without capital-heavy physical installations.</p>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-pointer gold"></div>
+                <div class="timeline-stamp gold">Phase 02 | Months 12 - 24</div>
+                <h4 class="timeline-title">Clinical Validation & Medical Site Pilots</h4>
+                <p class="timeline-text">Deploy collaborative observational clinical trials checking 500 patient sequence setups against designated control segments inside prominent psychiatric hospital lines (such as AIIMS or related specialized facilities). Structure all database storage clusters to secure total compliance with the Digital Personal Data Protection (DPDP) Act and ICMR healthcare AI guidelines.</p>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-pointer"></div>
+                <div class="timeline-stamp cyan">Phase 03 | Months 24 - 36</div>
+                <h4 class="timeline-title">Enterprise B2B API Scaling & Digital Portals Launch</h4>
+                <p class="timeline-text">Deploy automated cloud API plugins connecting Geniatry risk assessment logic straight into leading domestic tele-psychiatry interfaces (such as Amaha or Wysa) and corporate employee wellness pipelines. Formally activate the deep polygenic screening portal tracking early childhood neurodevelopmental statuses (ADHD/Autism).</p>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-pointer green"></div>
+                <div class="timeline-stamp green">Phase 04 & 05 | Months 36 - 60</div>
+                <h4 class="timeline-title">Sovereign Genomics Moat & National Health Integration</h4>
+                <p class="timeline-text">Exceed a repository framework scale milestone of 25,000 distinct domestic patient profiles, moving past global baseline data sets. Interconnect platform diagnostic summaries straight to citizen ABHA account metrics under the Ayushman Bharat Digital Mission parameters, scaling accessible low-cost configurations across the active Tele-MANAS national public service network.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL FOUNDING LEADERSHIP SECTION -->
+    <section id="founders">
+        <div class="section-header">
+            <h2>The Technical Leadership Directorate</h2>
+            <p>Cross-disciplinary innovators bridging clinical neuropsychiatric expertise with advanced Johns Hopkins data systems engineering architecture.</p>
+        </div>
+
+        <div class="founder-wrapper">
+            <div class="founder-profile">
+                <div class="founder-graphic">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                    <h4 class="founder-name">Dr. Akanksha Ayushi Singh</h4>
+                    <div class="founder-role cyan">Founder & Chief Executive Officer</div>
+                    <p class="founder-bio">Specialist clinical director coordinating platform pathology models, medical site validation trials, and user interface translation matrices designed for active point-of-care clinical diagnostics.</p>
+                    <div class="founder-meta">
+                        <span><strong>Credentials:</strong> MBBS, MD Psychiatry</span>
+                        <span><strong>Contact:</strong> akanksha@geniatry.ai</span>
+                        <span><strong>Direct Link:</strong> +91-96851 88800</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="founder-profile">
+                <div class="founder-graphic">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold-accent)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                    <h4 class="founder-name">Utkarsh Singh</h4>
+                    <div class="founder-role gold">Chief Technology Officer</div>
+                    <p class="founder-bio">Advanced data systems specialist handling cross-ancestry mathematical optimization layers, cloud database architecture execution, and high-throughput computational pipeline design.</p>
+                    <div class="founder-meta">
+                        <span><strong>Credentials:</strong> Johns Hopkins University Alumni, Worked in Computational Genomics</span>
+                        <span><strong>Awards:</strong> Forbes 30 Under 30</span>
+                        <span><strong>Contact:</strong> usingh@geniatry.ai</span>
+                        <span><strong>Direct Link:</strong> +91-70424 34285</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION ENTRY BLOCK -->
+    <section id="portal" style="text-align: center; max-width: 900px; margin: 0 auto; padding-bottom: 80px;">
+        <h2 style="font-size: 40px; font-weight: 800; color: #FFFFFF; margin-bottom: 20px;">Deploying Precision Medical Code to Eliminate Diagnostic Uncertainty</h2>
+        <p style="color: var(--text-muted); font-size: 16px; max-width: 680px; margin: 0 auto 40px auto;">Connect with our computational technology division to review operational API pilot files, integrate high-margin diagnostic dashboards, or review institutional research alignments.</p>
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="mailto:usingh@geniatry.ai" class="btn-primary">Request Institutional API Token</a>
+            <a href="mailto:akanksha@geniatry.ai" class="btn-secondary">Contact Clinical Director</a>
+        </div>
+    </section>
+
+    <!-- FOOTER TERMINAL -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div style="font-weight: 700; color: #FFFFFF; letter-spacing: 1.5px; font-size: 15px;">GENIATRY PRIVATE LIMITED</div>
+                <div class="footer-legal-tag">Sovereign Medical Software Systems & Computational Genomics Engine Architecture Core.</div>
+            </div>
+            <div style="text-align: right; font-family: monospace; font-size: 12px;">
+                Indore, MP, India | Circa 2026, under registration. All platform code structures retained.
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
