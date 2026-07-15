@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 10 180 180" fill="none">
+  <defs>
+    <!-- Premium Teal Gradient -->
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#51c4d3" />
+      <stop offset="100%" stop-color="#21717a" />
+    </linearGradient>
+
+    <!-- Sophisticated Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e5d0a6" />
+      <stop offset="100%" stop-color="#ab8e5b" />
+    </linearGradient>
+  </defs>
+
+  <g id="logo-icon">
+    <!-- Horizontal Rungs (Top Half) -->
+    <rect x="30" y="45" width="44" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+    <rect x="39" y="59" width="35" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+    <rect x="49" y="73" width="25" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+    <rect x="61" y="87" width="13" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+
+    <rect x="86" y="45" width="44" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+    <rect x="86" y="59" width="35" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+    <rect x="86" y="73" width="25" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+    <rect x="86" y="87" width="13" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+
+    <!-- Horizontal Rungs (Bottom Half) -->
+    <rect x="61" y="107" width="13" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+    <rect x="49" y="121" width="25" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+    <rect x="39" y="135" width="35" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+    <rect x="30" y="149" width="44" height="6" rx="3" fill="url(#goldGrad)" opacity="0.85" />
+
+    <rect x="86" y="107" width="13" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+    <rect x="86" y="121" width="25" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+    <rect x="86" y="135" width="35" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+    <rect x="86" y="149" width="44" height="6" rx="3" fill="url(#tealGrad)" opacity="0.85" />
+
+    <!-- Main Outer Strands -->
+    <path d="M 26,20 C 23,60 62,90 80,100 C 98,110 137,140 134,180" stroke="url(#tealGrad)" stroke-width="13" stroke-linecap="round" fill="none" />
+    <path d="M 134,20 C 137,60 98,90 80,100 C 62,110 23,140 26,180" stroke="url(#goldGrad)" stroke-width="13" stroke-linecap="round" fill="none" />
+  </g>
+</svg>
